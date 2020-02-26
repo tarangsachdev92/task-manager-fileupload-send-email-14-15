@@ -1,9 +1,11 @@
 const express = require('express');
 const User = require('../models/user');
 const auth = require('../middleware/auth');
-const router = new express.Router();
 const multer = require('multer');
 const sharp = require('sharp');
+const { sendWelcomeEmail, sendCancelationEmail } = require('../emails/account');
+const router = new express.Router();
+
 
 router.post('/users', async (req, res) => {
     const user = new User(req.body);
@@ -11,6 +13,7 @@ router.post('/users', async (req, res) => {
         // await user.save();
         // _id is creaetd by mongoose first and then save happen;
         const token = await user.generateAuthToken();
+        sendWelcomeEmail(user.email, user.name);
         res.status(201).send({ user, token });
     } catch (error) {
         res.status(400).send(error)
@@ -87,6 +90,7 @@ router.delete('/users/me', auth, async (req, res) => {
     try {
         await req.user.remove();
         // remove tasks 
+        sendCancelationEmail(req.user.email, req.user.name);
         res.send(req.user); // 200
     } catch (error) {
         res.status(500).send(error)
