@@ -1,3 +1,13 @@
-85 : data sanitization and validation 
+
+heroku create tarang-task-manager
+
+heroku config:set key=value
+
+heroku config:set JWT_SECRET=thisismysecretkey
+heroku config:set MONGODB_URL=
+heroku config:set MONGODB_URL='mongodb+srv://tarang-admin:admin123@cluster0-xf5qt.mongodb.net/task-manager-api?retryWrites=true&w=majority'
+heroku config:set SENDGRID_API_KEY=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
+heroku config:set PORT=3000
 
 
+git push heroku master
