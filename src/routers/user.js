@@ -112,6 +112,7 @@ const upload = multer({
 
 // form-data;
 router.post('/users/me/avatar', auth, upload.single('avatar'), async (req, res) => {
+    // multer libray not save files in avtars directory and pass that data to our function so
     // this(req.file.buffer) is only work if // dest: 'avatars' is not set
     // req.user.avatar = req.file.buffer
     const buffer = await sharp(req.file.buffer).resize({ width: 250, height: 250 }).png().toBuffer()
