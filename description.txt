@@ -10,14 +10,13 @@ create cluster in mongodb atlas
 -> for the first step -> click on different ip button
 provide this ip address to the textbox 0.0.0.0/0
 
-
-
 heroku create tarang-task-manager
 
 heroku config:set key=value
+heroku config
+heroku config:unset key
 
 heroku config:set JWT_SECRET=thisismysecretkey
-heroku config:set MONGODB_URL=
 heroku config:set MONGODB_URL='mongodb+srv://tarang-admin:admin123@cluster0-xf5qt.mongodb.net/task-manager-api?retryWrites=true&w=majority'
 heroku config:set SENDGRID_API_KEY=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
 heroku config:set PORT=3000
