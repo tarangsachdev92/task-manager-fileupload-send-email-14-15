@@ -11,6 +11,7 @@ create cluster in mongodb atlas
 provide this ip address to the textbox 0.0.0.0/0
 
 heroku create tarang-task-manager
+heroku remove sets up when we run above
 
 heroku config:set key=value
 heroku config
