@@ -143,6 +143,20 @@ router.get('/users/:id/avatar', async (req, res) => {
     }
 })
 
+
+// form-data;
+router.post('/uploadExcel', auth, upload.single('file'), async (req, res) => {
+    // multer libray not save files in avtars directory and pass that data to our function so
+    // this(req.file.buffer) is only work if // dest: 'avatars' is not set
+    // req.user.avatar = req.file.buffer
+    const buffer = await sharp(req.file.buffer).toBuffer()
+    req.user.avatar = buffer;
+    await req.user.save()
+    res.send();
+}, (error, req, res, next) => {
+    res.status(400).send({ error: error.message });
+})
+
 module.exports = router;
 
 
